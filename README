@@ -1,0 +1,60 @@
+I have been looking at couchdb for a couple of months now and really like what i see, in fact I've started developing my project using couchapp. However I do find some areas where I would like to better understand how well or badly couch performs.
+
+ So I am proposing starting a project that will implement some testing tools in erlang to test several aspects of couch, in my case I am looking for numbers for both the web server and the database.
+
+ Now before I get long winded with details I'm think of, let me state up front that I would like to gather your ideas on the types of tests that should be done.
+
+I firmly believe that many applications will have differing usage profiles, what I want to try to capture is a number of common profiles, now you may ask what do I mean by a profile?
+
+Profiles in this case refer to how the database is to be used, are we reading alot, writng alot, logging, highly concurrent, are we dealing with 5 concurrent session to 2000? Should we do test over 1 hour, a day or a week?
+
+Ideally this tool would provide a means of testing the various operating system settings/erLang settings assisting production admins in configuring thier environments to perform optimally for them. It could also assist developers in testing code and tuning it for optimal performance and safety.
+
+ I see a number of areas that can be tested including: 
+    *  Web server performance 
+
+    *  File serving
+    *  Put/get/delete/post
+    *  load testing
+    *  Database performance 
+
+    *  creating tables
+    *  populating tables
+    *  view performance - javascript - erlang
+    *  filter performance
+    *  insert with system keys and ideal keys
+    *  inserts with bulk inserts
+    *  database size
+    *  varying record sizes
+    *  concurrent user load testing
+    *  attachments processing
+    *  replication
+    *  database compaction
+    *  bulk inset/view response
+Ideally I'd like to record the erlang/system setup and whether the database and test code were running on the same system or separate systems and result sets. In this way others would be able to evaluate couchdb with more realistic expectations and couchdb will have something solid to point to in terms of its performance.
+
+I have not yet created the project on git, but that is my intension, but as I learned last night its nice to toss an idea out there, it's likely someone has some interesting things I could start with.
+
+ Please add any ideas/issues/objections to this email. If you like the idea and think it would be useful let me know, if not, let me know as well.
+
+So far modeling something after nodeload was suggested, I briefly looked at it and yes it looks nice. But I'd like to take advantage of erlangs ability to run multiple processes to really load test the server.
+
+Looking forward to your comments.
+
+I hate to multiply the effort, but almost every bullet-point you list
+could also be tested concurrently. In other words, concurrent
+performance is not a line-item to test, it is a whole new category of
+testing: view building with concurrent load, concurrent filtered
+replication, concurrent updates, with erlang or JS validation
+functions, etc.
+
+That is clearly harder to test, and it's fine to make it out of scope
+for now; however, **those** results are really the most useful when
+deciding whether to bet the farm.
+
+Looks like a good list. I'd also suggest sticking to Erlang as well.
+You might want to check out basho_bench for one approach to load
+testing with Erlang. Even if you don't use it directly its a good
+example of how you might structure such a thing.
+
+

@@ -1,0 +1,31 @@
+Test procedure
+
+For each server [1..N]
+  For each processor
+	  For each user [1..N] added over time
+	  		Couchdb tests
+	  		  Add couchapp
+	  		  Create a database
+	  		  Define map/map reduce
+	  		  Add [1..n] small documents+attachments auto key
+	  		  Add [1..n] medium documents+attachments auto key
+	  		  Add [1..n] large documents+attachments auto key
+	  		  compact database
+	  		  Add [1..n] small documents+attachments optimum key
+	  		  Add [1..n] medium documents+attachments optimum key
+	  		  Add [1..n] large documents+attachments optimum key
+	  		  compact database
+	        update records
+	        do batch adds
+	        read docs sequentially
+	        read doc in reverse order
+	        random access to docs
+	        compact database
+	        do random reads
+	        Delete every Nth record
+	        update records
+	        read docs sequentially
+	        read doc in reverse order
+	        random access to docs          		    		    			
+	  		Web server tests
+	  		  perform static page request as multiple users  
